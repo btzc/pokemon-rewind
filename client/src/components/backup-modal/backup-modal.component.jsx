@@ -5,7 +5,7 @@ import {
   Modal 
 } from 'semantic-ui-react'
 
-const BackupModal = ({ handleSubmit, handleChange, value, open }) => (
+const BackupModal = ({ handleSubmit, handleChange, value }) => (
   <Modal 
     as={Form}
     trigger={<Button primary>Create Backup</Button>}
@@ -22,11 +22,10 @@ const BackupModal = ({ handleSubmit, handleChange, value, open }) => (
           required
         />
       </Form.Field>
-      <Modal.Actions>
-        <Button type="submit" primary>Create Backup</Button>
-        <Button color="red">Close</Button>
-      </Modal.Actions>
     </Modal.Content>
+    <Modal.Actions>
+      <Button type="submit" primary>Create Backup</Button>
+    </Modal.Actions>
   </Modal>
 );
 

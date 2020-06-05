@@ -17,7 +17,7 @@ function App() {
         <Route path='/' exact>
           <Home />
         </Route>
-        <Route path='/:collectionId'>
+        <Route path='/:backupId'>
           <Backup />
         </Route>
       </Switch>
