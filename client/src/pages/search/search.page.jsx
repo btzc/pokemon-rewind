@@ -38,6 +38,9 @@ const Search = () => {
 
     const resp = await axios.get(`http://localhost:4000/api/search/${backupId}?${query}`);
 
+    setName('');
+    setHp('');
+    setRarity('');
     setResults(resp.data);
   }
 
@@ -71,19 +74,23 @@ const Search = () => {
         <Form.Field color="blue" control={Button}>Submit</Form.Field>
       </Form>
       <Divider />
-      <Grid>
-        <Grid.Row columns={3}>
-        {
-          results.map(({_id, imageUrl}) => {
-            return (
-              <Grid.Column key={_id}>
-                <Image src={imageUrl} />
-              </Grid.Column>
-            )
-          })
-        } 
-        </Grid.Row>
-      </Grid>
+      {
+        results.length > 0 ? 
+        <Grid>
+          <Grid.Row columns={3}>
+          {
+            results.map(({_id, imageUrl}) => {
+              return (
+                <Grid.Column key={_id}>
+                  <Image src={imageUrl} />
+                </Grid.Column>
+              )
+            })
+          } 
+          </Grid.Row>
+        </Grid> : 
+        <p>Uhhh this is awkward. Your data is missing.</p>
+      }
     </Container>
   )
 }

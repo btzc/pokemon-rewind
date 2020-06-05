@@ -10,10 +10,12 @@ import Home from './pages/home/home.page';
 import Backup from './pages/backup/backup.page';
 import Search from './pages/search/search.page';
 
+import Header from './components/header/header.component';
 
 function App() {
   return (
     <Container>
+      <Header />
       <Switch>
         <Route path='/' exact>
           <Home />
