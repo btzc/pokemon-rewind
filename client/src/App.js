@@ -8,6 +8,7 @@ import { Container } from 'semantic-ui-react';
 
 import Home from './pages/home/home.page';
 import Backup from './pages/backup/backup.page';
+import Search from './pages/search/search.page';
 
 
 function App() {
@@ -17,8 +18,11 @@ function App() {
         <Route path='/' exact>
           <Home />
         </Route>
-        <Route path='/:backupId'>
+        <Route path='/:backupId' exact>
           <Backup />
+        </Route>
+        <Route path='/:backupId/search'>
+          <Search />
         </Route>
       </Switch>
     </Container>

@@ -87,10 +87,23 @@ app.get(
   ],
   (req: Request, res: Response) => {
     const { id } = req.params;
+    const { name, rarity, hp } = req.query;
+
+    const query: {name?: any, rarity?: any, hp?: any} = {};
+
+    if (name) {
+      query.name = { "$regex": name, "$options": "i" }
+    }
+    if (rarity) {
+      query.rarity = { "$regex": rarity, "$options": "i" }
+    }
+    if (hp) {
+      query.hp = { "$regex": hp, "$options": "i" }
+    }
 
     Pokemon.find({
       cardsId: id,
-      ...req.query
+      ...query
     })
     .then((result) => res.send(result))
     .catch((err) => console.log(err));

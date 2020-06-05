@@ -18,7 +18,6 @@ import {
   Button
 } from 'semantic-ui-react';
 
-
 const Backup = () => {
   const { backupId } = useParams();
   const [backup, setBackup] = useState({_id: '', name: '', cards: [], date: new Date()});
