@@ -32,7 +32,7 @@ const Home = () => {
     });
 
     const newBackup = response.data;
-
+    setBackupName('');
     setBackup(backup.concat(newBackup));
   }
 

@@ -36,7 +36,7 @@ router.get(
       ...query
     })
     .then((result) => res.send(result))
-    .catch((err) => console.log(err));
+    .catch((err) => res.send(err));
   }
 );
 
