@@ -1,7 +1,16 @@
 import express, { Request, Response } from 'express';
 import mongoose from 'mongoose';
-import { query, param, body } from 'express-validator';
+import { body } from 'express-validator';
 import axios from 'axios';
+
+import { 
+  Attack,
+  Attacks,
+  Weakness,
+  Weaknesses,
+  Pokemon,
+  Cards
+} from '../common/types';
 
 import attackSchema from '../schema/attack';
 import pokemonSchema from '../schema/pokemon';
@@ -24,23 +33,24 @@ router.post(
     try {
       const resp = await axios.get('https://api.pokemontcg.io/v1/cards?setCode=det1');
 
-      const attacks = resp.data.cards.map(({attacks}: any) => {
-        return attacks.map((attack: any) => new Attack({...attack}));
+      const attacks = resp.data.cards.map(({attacks}: Attacks) => {
+        return attacks.map((attack: Attack) => new Attack({...attack}));
       });
 
-      const weaknesses = resp.data.cards.map(({weaknesses}: any) => {
-        return weaknesses.map((weakness: any) => new Weakness({...weakness}));
+      const weaknesses = resp.data.cards.map(({weaknesses}: Weaknesses) => {
+        return weaknesses.map((weakness: Weakness) => new Weakness({...weakness}));
       });
       
       const cardsId = new mongoose.Types.ObjectId;
+
       const pokemons = resp.data.cards.map(
-        (pokemon: any) => {
+        (pokemon: Pokemon) => {
           return new Pokemon({
             cardsId,
             attacks: attacks,
             weaknesses: weaknesses,
             ...pokemon
-          })
+          });
         });
 
       const cards = new Cards({
@@ -53,7 +63,7 @@ router.post(
       Pokemon.insertMany(pokemons)
         .then(() => {
           return cards.save();
-        }).then((result) => {
+        }).then((result: any) => {
           res.send(result);
         })
         .catch(err => res.send(err));
