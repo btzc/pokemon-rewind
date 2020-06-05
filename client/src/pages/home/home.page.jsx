@@ -20,14 +20,14 @@ const Home = () => {
   }, []);
 
   const getBackups = async () => {
-    const response = await axios.get('http://localhost:4000/api/collections');
+    const response = await axios.get('http://localhost:4000/api/backups');
 
     setBackupName('');
     setBackup(response.data);
   }
 
   const createNewBackup = async () => {
-    const response = await axios.post('http://localhost:4000/api/create', {
+    const response = await axios.post('http://localhost:4000/api/backups/create', {
       name: backupName
     });
 
