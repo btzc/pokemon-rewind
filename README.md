@@ -5,6 +5,7 @@ This project was created as part of the Rewind interview process.
 To run this app you will need Docker installed. You can complete the following steps to run the app:
 1. From the root directory, run `docker-compose up`
 2. Get a coffee
+3. Naviage to `http://localhost:3000` in a browser
 
 ## The App
 The app consists of a client, server, and database. Client was written with React, server was written using Node.js, and the database I chose to use was MongoDB.
