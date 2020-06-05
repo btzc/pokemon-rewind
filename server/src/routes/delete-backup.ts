@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
 import mongoose from 'mongoose';
-import {  param } from 'express-validator';
+import { param } from 'express-validator';
 
 import pokemonSchema from '../schema/pokemon';
 import cardsSchema from '../schema/cards';

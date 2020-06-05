@@ -1,6 +1,5 @@
-import express, { Request, Response } from 'express';
+import express from 'express';
 import { json } from 'body-parser';
-import {  param } from 'express-validator';
 
 import cors from 'cors';
 import mongoose from 'mongoose';
