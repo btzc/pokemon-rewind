@@ -36,7 +36,7 @@ const Search = () => {
 
     const query = queryList.join('&');
 
-    const resp = await axios.get(`http://localhost:4000/api/search/${backupId}?${query}`);
+    const resp = await axios.get(`http://localhost:4000/api/backup/${backupId}/search/?${query}`);
 
     setName('');
     setHp('');
