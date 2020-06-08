@@ -9,7 +9,7 @@ const router = express.Router();
 router.get('/api/backups', (req: Request, res: Response) => {
   Cards.find({})
     .then((result) => res.send(result))
-    .catch((err) => res.send(err));
+    .catch((err) => res.send({ error: err }));
 });
 
 export { router as getBackupsRouter }

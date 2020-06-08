@@ -66,9 +66,9 @@ router.post(
         }).then((result: any) => {
           res.send(result);
         })
-        .catch(err => res.send(err));
+        .catch(err => res.send({ error: err }));
     } catch (err) {
-      res.send(err);
+      res.send({ error: err });
     }
   }
 );

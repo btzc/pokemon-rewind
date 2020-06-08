@@ -17,7 +17,7 @@ router.get(
     Cards.findOne({ _id: id })
       .populate('cards')
       .then((results: any) => res.send(results))
-      .catch((err: Error) => res.send(err));
+      .catch((err: Error) => res.send({ error: err }));
   }
 );
 

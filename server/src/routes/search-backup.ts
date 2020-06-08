@@ -36,7 +36,7 @@ router.get(
       ...query
     })
     .then((result) => res.send(result))
-    .catch((err) => res.send(err));
+    .catch((err) => res.send({ error: err }));
   }
 );
 

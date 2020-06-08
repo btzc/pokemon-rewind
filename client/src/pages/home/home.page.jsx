@@ -20,20 +20,38 @@ const Home = () => {
   }, []);
 
   const getBackups = async () => {
-    const response = await axios.get('http://localhost:4000/api/backups');
+    try {
+      const resp = await axios.get('http://localhost:4000/api/backups');
 
-    setBackupName('');
-    setBackup(response.data);
+      if (!resp.data.err) {
+        setBackupName('');
+        setBackup(resp.data);
+      } else {
+        throw new Error(resp.data.err);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+
   }
 
   const createNewBackup = async () => {
-    const response = await axios.post('http://localhost:4000/api/backups/create', {
-      name: backupName
-    });
+    try {
+      const resp = await axios.post('http://localhost:4000/api/backups/create', {
+        name: backupName
+      });
 
-    const newBackup = response.data;
-    setBackupName('');
-    setBackup(backup.concat(newBackup));
+      if (!resp.data.err) {
+        const newBackup = resp.data;
+        setBackupName('');
+        setBackup(backup.concat(newBackup));
+      } else {
+        throw new Error(resp.data.err);
+      }
+    } catch(err) {
+      console.log(err);
+    }
+
   }
 
   const handleSubmit = (event) => {

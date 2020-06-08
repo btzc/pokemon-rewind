@@ -23,16 +23,30 @@ const Backup = () => {
   const [backup, setBackup] = useState({_id: '', name: '', cards: [], date: new Date()});
 
   const getBackupData = async () => {
-    const resp = await axios.get(`http://localhost:4000/api/backup/${backupId}`);
+    try {
+      const resp = await axios.get(`http://localhost:4000/api/backup/${backupId}`);
 
-    setBackup(resp.data);
+      if (!resp.data.err) {
+        setBackup(resp.data);
+      } else {
+        throw new Error(resp.data.err);
+      }
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   const handleClick = async () => {
-    const resp = await axios.delete(`http://localhost:4000/api/backup/${backupId}`);
+    try {
+      const resp = await axios.delete(`http://localhost:4000/api/backup/${backupId}`);
 
-    if (resp.data.ok === 1 && resp.data.deletedCount === 1) {
-      window.location.href = 'http://localhost:3000/';
+      if (!resp.data.err) {
+        window.location.href = 'http://localhost:3000/';
+      } else {
+        throw new Error(resp.data.err);
+      }
+    } catch (err) {
+      console.log(err);
     }
   }
 

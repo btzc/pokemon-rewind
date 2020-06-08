@@ -25,7 +25,7 @@ router.delete(
       return Cards.deleteMany({ _id: id })
     })
     .then((result: any) => res.send(result))
-    .catch((err: any) => res.send(err));
+    .catch((err: any) => res.send({ error: err }));
 });
 
 export { router as deleteBackupRouter }

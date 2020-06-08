@@ -23,6 +23,7 @@ const Search = () => {
   const [rarity, setRarity] = useState('');
 
   const handleSubmit = async (e) => {
+    e.preventDefault();
     const queryList = [];
     if (name.length > 0) {
       queryList.push(`name=${name}`);
@@ -36,12 +37,20 @@ const Search = () => {
 
     const query = queryList.join('&');
 
-    const resp = await axios.get(`http://localhost:4000/api/backup/${backupId}/search/?${query}`);
+    try {
+      const resp = await axios.get(`http://localhost:4000/api/backup/${backupId}/search/?${query}`);
 
-    setName('');
-    setHp('');
-    setRarity('');
-    setResults(resp.data);
+      if (!resp.data.err) {
+        setName('');
+        setHp('');
+        setRarity('');
+        setResults(resp.data);
+      } else {
+        throw new Error(resp.data.err);
+      }
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   return (
